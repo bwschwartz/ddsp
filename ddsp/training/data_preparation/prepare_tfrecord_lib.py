@@ -54,7 +54,7 @@ def _load_audio_as_array(audio_path, sample_rate):
   
   # naive implemention added by Ben
     audio = librosa.load(audio_path, sr=None)
-  audio /= np.iinfo(sample_arr.typecode).max
+#   audio /= np.iinfo(sample_arr.typecode).max
   return audio
 
 
