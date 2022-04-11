@@ -54,6 +54,7 @@ def _load_audio_as_array(audio_path, sample_rate):
 
 # naive implemention 
   librosa.load(audio_path, sr=None)
+  print("well, maybe")
   return audio
 
 
