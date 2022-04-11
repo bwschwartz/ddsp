@@ -65,9 +65,13 @@ def _load_audio(audio_path, sample_rate):
   audio = _load_audio_as_array(audio_path, sample_rate)
   
   # Add ground truth audio. Departure from DDSP to convert Autoencoder -> Denoising Autoencoder
-  filecode = str(format(audio[100], '.4')) + str(format(audio[200], '.4'))
-  filepath = '/content/drive/MyDrive/Truth/' + filecode + '.wav'
-  ground_truth = librosa.load(filepath, sr=None)
+  _, end = audio_path.split('audio/')
+  beginning = '/content/drive/MyDrive/Truth/' 
+  true_path = os.path.join(beginning, end)
+  
+#   filecode = str(format(audio[100], '.4')) + str(format(audio[200], '.4'))
+#   filepath = '/content/drive/MyDrive/Truth/' + filecode + '.wav'
+  ground_truth = librosa.load(true_path, sr=None)
   return {'audio': audio, 'ground_truth': ground_truth}
 
 
