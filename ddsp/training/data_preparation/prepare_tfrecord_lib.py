@@ -15,6 +15,7 @@
 # Lint as: python3
 """Apache Beam pipeline for computing TFRecord dataset from audio files."""
 
+import os #added import 
 from absl import logging
 import apache_beam as beam
 from ddsp import spectral_ops
@@ -58,7 +59,12 @@ def _load_audio(audio_path, sample_rate):
   logging.info("Loading '%s'.", audio_path)
   beam.metrics.Metrics.counter('prepare-tfrecord', 'load-audio').inc()
   audio = _load_audio_as_array(audio_path, sample_rate)
-  return {'audio': audio}
+  
+  # Add ground truth audio. Departure from DDSP to convert Autoencoder -> Denoising Autoencoder
+  filecode = str(format(audio[100], '.4')) + str(format(audio[200], '.4'))
+  filepath = '/content/drive/MyDrive/Truth/' + filecode + '.wav'
+  ground_truth = librosa.load(filepath, sr=None)
+  return {'audio': audio, 'ground_truth': ground_truth}
 
 
 def _chunk_audio(ex, sample_rate, chunk_secs):
@@ -70,7 +76,7 @@ def _chunk_audio(ex, sample_rate, chunk_secs):
   n_chunks = chunks.shape[0]
   for i in range(n_chunks):
     yield {'audio': chunks[i].numpy()}
-
+   
 
 def _add_f0_estimate(ex, frame_rate, center, viterbi):
   """Add fundamental frequency (f0) estimate using CREPE."""
