@@ -22,7 +22,7 @@ from ddsp import spectral_ops
 import numpy as np
 import pydub
 import tensorflow.compat.v2 as tf
-
+import librosa #added by Ben
 
 
 def _load_audio_as_array(audio_path, sample_rate):
@@ -52,7 +52,7 @@ def _load_audio_as_array(audio_path, sample_rate):
   # Convert from int to float representation.
   
   
-  # naive implemention 
+  # naive implemention added by Ben
     audio = librosa.load(audio_path, sr=None)
   audio /= np.iinfo(sample_arr.typecode).max
   return audio
