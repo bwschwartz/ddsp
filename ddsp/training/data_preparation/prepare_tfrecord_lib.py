@@ -67,7 +67,7 @@ def _load_audio(audio_path, sample_rate):
   
 #   filecode = str(format(audio[100], '.4')) + str(format(audio[200], '.4'))
 #   filepath = '/content/drive/MyDrive/Truth/' + filecode + '.wav'
-  ground_truth = librosa.load(true_path, sr=None)
+  ground_truth = _load_audio(true_path, sample_rate)
   return {'audio': audio, 'ground_truth': ground_truth}
 
 
