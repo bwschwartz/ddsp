@@ -22,7 +22,6 @@ from ddsp import spectral_ops
 import numpy as np
 import pydub
 import tensorflow.compat.v2 as tf
-import librosa #added by Ben
 
 
 def _load_audio_as_array(audio_path, sample_rate):
@@ -68,7 +67,7 @@ def _load_audio(audio_path, sample_rate):
   
 #   filecode = str(format(audio[100], '.4')) + str(format(audio[200], '.4'))
 #   filepath = '/content/drive/MyDrive/Truth/' + filecode + '.wav'
-  ground_truth = _load_audio(true_path, sample_rate)
+  ground_truth = _load_audio_as_array(true_path, sample_rate)
   return {'audio': audio, 'ground_truth': ground_truth}
 
 
