@@ -56,6 +56,7 @@ def _load_audio_as_array(audio_path, sample_rate):
 
 def _load_audio(audio_path, sample_rate):
   """Load audio file."""
+  print("audio_path": audio_path)
   logging.info("Loading '%s'.", audio_path)
   beam.metrics.Metrics.counter('prepare-tfrecord', 'load-audio').inc()
   audio = _load_audio_as_array(audio_path, sample_rate)
