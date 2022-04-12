@@ -55,7 +55,6 @@ def _load_audio_as_array(audio_path, sample_rate):
 
 def _load_audio(audio_path, sample_rate):
   """Load audio file."""
-  print("audio_path", audio_path)
   logging.info("Loading '%s'.", audio_path)
   beam.metrics.Metrics.counter('prepare-tfrecord', 'load-audio').inc()
   audio = _load_audio_as_array(audio_path, sample_rate)
@@ -64,10 +63,8 @@ def _load_audio(audio_path, sample_rate):
   _, end = audio_path.split('audio/')
   beginning = '/content/drive/MyDrive/Truth/' 
   true_path = os.path.join(beginning, end)
-  
-#   filecode = str(format(audio[100], '.4')) + str(format(audio[200], '.4'))
-#   filepath = '/content/drive/MyDrive/Truth/' + filecode + '.wav'
   ground_truth = _load_audio_as_array(true_path, sample_rate)
+  
   return {'audio': audio, 'ground_truth': ground_truth}
 
 
