@@ -61,7 +61,7 @@ def _load_audio(audio_path, sample_rate):
   
   # Add ground truth audio. Departure from DDSP to convert Autoencoder -> Denoising Autoencoder
   _, end = audio_path.split('Estimate/')
-  beginning = '/content/drive/MyDrive/Truth/' 
+  beginning = '/scratch/bs4308/Truth/' 
   true_path = os.path.join(beginning, end)
   ground_truth = _load_audio_as_array(true_path, sample_rate)
   
